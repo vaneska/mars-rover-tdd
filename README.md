@@ -1,5 +1,7 @@
 # Mars rover outside-in tdd starter
 
+![rover](/agilix/mars-rover-tdd/-/blob/main/rover.md "rover")
+
 ## Getting started
 
 This starter contains only initial tests for rover HTTP API. To run tests execute the following commands:
