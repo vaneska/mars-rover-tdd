@@ -1,7 +1,5 @@
 # Mars rover outside-in tdd starter
 
-![rover](https://gitlab.com/agilix/mars-rover-tdd/-/raw/main/rover.png?inline=false "rover")
-
 ## Getting started
 
 This starter contains only initial tests for rover HTTP API. To run tests execute the following commands:
@@ -24,3 +22,7 @@ webServer: {
 ```
 
 More info about using playwright for API tests: https://playwright.dev/docs/test-api-testing
+
+## Domain & Task
+
+See [TASK.md](TASK.md)
