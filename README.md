@@ -1,6 +1,6 @@
 # Mars rover outside-in tdd starter
 
-![rover](/agilix/mars-rover-tdd/-/blob/main/rover.png "rover")
+![rover](https://gitlab.com/agilix/mars-rover-tdd/-/raw/main/rover.png?inline=false "rover")
 
 ## Getting started
 
