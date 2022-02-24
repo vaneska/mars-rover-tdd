@@ -1,28 +1,21 @@
-# Mars rover outside-in tdd starter
+# Mars-rover outside-in TDD
 
-## Getting started
+## Привет!
 
-This starter contains only initial tests for rover HTTP API. To run tests execute the following commands:
+В этой практике предлагаю тебе создать приложение для управления марсоходом через HTTP. У марсохода есть 3 команды: ехать вперёд, повернуть налево и повернуть направо. Проблема в том, что выполнение занимает какое-то время, и ученые хотят посылать команды пачками, при этом получать от ровера в ответ его конечное местоположение.
 
-```shell
-npm i
-npx playwright install
-npx playwright test
-```
+Можно использовать любой язык – Perl, Python, JS. Можно использовать любой дизайн и архитектуру. Обсуждайте в команде и принимайте решения самостоятельно. Но помните принцип: make it work, make it right, make if fast. Если чувствуете, что забуксовали – сделайте как-нибудь, а потом сделайте рефакторинг.
 
-Then configure your web server in `playwright.config.ts`
+## Задание
 
-```TS
-webServer: {
-    command: "replace with your server start script",
-    port: 8080,
-    timeout: 2 * 1000,
-    reuseExistingServer: !process.env.CI,
-},
-```
+1. Реализуйте базовое управление марсходом в соответствии с [правилами](rules.md). Используйте [приёмочные тесты для самопроверки](tests.md).
 
-More info about using playwright for API tests: https://playwright.dev/docs/test-api-testing
+2. Сделайте веб-интерфейс для отправки команд на ровер
 
-## Domain & Task
+3. Сделайте очередь команд на выполнение и интерфейс, показывающий команды в очереди
 
-See [TASK.md](TASK.md)
+4. Добавьте возможность отменить очередь команд
+
+## Удачи!
+
+![rover](https://gitlab.com/agilix/mars-rover-tdd/-/raw/main/rover.png?inline=false "rover")
