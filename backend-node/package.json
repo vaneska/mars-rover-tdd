@@ -1,0 +1,14 @@
+{
+  "name": "backend-node",
+  "private": true,
+  "main": "./src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.15",
+    "restify": "^8.6.1"
+  }
+}
