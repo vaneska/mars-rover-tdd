@@ -5,6 +5,10 @@ const grid_2x2_w_obstacle_at_1_1 = { x: 2, y: 2, obstacles: [{ x: 1, y: 1 }] };
 const grid_10x10 = { x: 10, y: 10 };
 const _0_0_N = { x: 0, y: 0, direction: "N" };
 
+test("server is available", async ({ request }) => {
+  expect((await request.post("/brew_coffee", {})).status()).toBe(418);
+});
+
 test.describe("Rover final spec", () => {
   test("first command returns next rover position", async ({ request }) => {
     await roverAt(_0_0_N, grid_10x10, request);

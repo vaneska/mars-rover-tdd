@@ -2,6 +2,11 @@ var restify = require("restify");
 
 var server = restify.createServer();
 
+server.post("/brew_coffee", (req, res, next) => {
+  res.send(418, "I'm a teapot");
+  next();
+});
+
 server.post("/command", (req, res, next) => {
   res.send("hello");
   next();
