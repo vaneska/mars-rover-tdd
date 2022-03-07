@@ -8,13 +8,13 @@ let moving = false;
 
 const handler = (req, res, next) => {
   if (moving) {
-    res.send(503, "Rover is busy");
+    res.send(503, { error: "Планетоход занят" });
     return next();
   }
 
   if (battery.isLow()) {
     battery.charge();
-    res.send(503, "Low batteries");
+    res.send(503, { error: "Низкий заряд батареи" });
     return next();
   }
 
@@ -23,7 +23,7 @@ const handler = (req, res, next) => {
 
   setTimeout(() => {
     moving = false;
-    res.send(200, "Command executed");
+    res.send(200, { result: "Команда выполнена успешно!" });
     next();
   }, randomIntFromInterval(1000, 3000));
 };
