@@ -13,7 +13,7 @@ test.describe("Rover final spec", () => {
   test("first command returns next rover position", async ({ request }) => {
     await roverAt(_0_0_N, grid_10x10, request);
 
-    const addCommandResponse = await addCommand(request, "MMRMMLM");
+    const addCommandResponse = await addCommand("MMRMMLM", request);
 
     expect(addCommandResponse.status()).toBe(201);
     const { point } = await addCommandResponse.json();
@@ -23,8 +23,8 @@ test.describe("Rover final spec", () => {
   test("multiple commands sum up final position", async ({ request }) => {
     await roverAt(_0_0_N, grid_2x2, request);
 
-    await addCommand(request, "MR");
-    const secondCommandResponse = await addCommand(request, "M");
+    await addCommand("MR", request);
+    const secondCommandResponse = await addCommand("M", request);
 
     expect(secondCommandResponse.status()).toBe(201);
     const { point } = await secondCommandResponse.json();
@@ -36,8 +36,8 @@ test.describe("Rover final spec", () => {
   }) => {
     await roverAt(_0_0_N, grid_2x2, request);
 
-    await addCommand(request, "M");
-    const badCommandResponse = await addCommand(request, "M");
+    await addCommand("M", request);
+    const badCommandResponse = await addCommand("M", request);
 
     expect(badCommandResponse.status()).toBe(400);
     const { error } = await badCommandResponse.json();
@@ -49,8 +49,8 @@ test.describe("Rover final spec", () => {
   }) => {
     await roverAt(_0_0_N, grid_2x2_w_obstacle_at_1_1, request);
 
-    await addCommand(request, "MR");
-    const badCommandResponse = await addCommand(request, "M");
+    await addCommand("MR", request);
+    const badCommandResponse = await addCommand("M", request);
 
     expect(badCommandResponse.status()).toBe(400);
     const { error } = await badCommandResponse.json();
@@ -59,7 +59,7 @@ test.describe("Rover final spec", () => {
 });
 
 const roverAt = (position, grid, request) =>
-  request.put("/map", { data: { position, grid } });
+  request.post("/map", { data: { position, grid } });
 
-const addCommand = (request, command: string) =>
-  request.post(`/command`, { data: { command } });
+const addCommand = (command: string, request) =>
+  request.post(`/commands`, { data: { command } });

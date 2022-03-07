@@ -7,7 +7,7 @@ server.post("/brew_coffee", (req, res, next) => {
   next();
 });
 
-server.post("/command", (req, res, next) => {
+server.post("/commands", (req, res, next) => {
   res.send("hello");
   next();
 });
