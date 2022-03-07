@@ -23,12 +23,14 @@ const handler = (req, res, next) => {
 
   setTimeout(() => {
     moving = false;
-    res.send(200, "command executed");
+    res.send(200, "Command executed");
     next();
   }, randomIntFromInterval(1000, 3000));
 };
 
 server.get("/move", handler);
+server.get("/left", handler);
+server.get("/right", handler);
 
 server.listen(process.env.SERVER_PORT ?? 3000, function () {
   console.log("%s listening at %s", server.name, server.url);
