@@ -6,7 +6,7 @@ const config: PlaywrightTestConfig = {
   },
   testDir: "./tests",
   webServer: {
-    command: "docker-compose -f ./backend-node/docker-compose.dev.yml up",
+    command: "docker-compose -f ./docker-compose.dev.yml up --build",
     port: 8080,
     timeout: 10 * 1000,
     reuseExistingServer: true,

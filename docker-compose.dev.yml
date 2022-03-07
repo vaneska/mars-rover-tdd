@@ -1,13 +1,13 @@
 version: '3.8'
 
 services:
- server:
+ server-node:
   build:
-   context: .
+   context: ./backend-node
   ports:
    - 8080:8080
   environment:
    - SERVER_PORT=8080
   volumes:
-   - ./:/app
+   - ./backend-node/src:/app/src
   command: npm run dev
