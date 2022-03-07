@@ -1,6 +1,13 @@
 version: '3.8'
 
 services:
+ rover:
+  build:
+   context: ./rover
+  ports:
+   - 3000:3000
+  environment:
+   - SERVER_PORT=3000
  server-node:
   build:
    context: ./backend-node

@@ -1,0 +1,11 @@
+{
+  "name": "backend-node",
+  "private": true,
+  "main": "./src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js"
+  },
+  "dependencies": {
+    "restify": "^8.6.1"
+  }
+}
