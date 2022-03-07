@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+ rover:
+  build:
+   context: ./rover
+  ports:
+   - 3000:3000
+  environment:
+   - SERVER_PORT=3000
+
+ server-node:
+  build:
+   context: ./backend-node
+  ports:
+   - 4000:4000
+  environment:
+   - SERVER_PORT=4000
+  volumes:
+   - ./backend-node/src:/app/src
+  command: npm run dev
+
+ frontend-vue:
+  build:
+   context: ./frontend-vue
+  ports:
+   - 8000:8000
+  volumes:
+   - ./frontend-vue/src:/app/src
