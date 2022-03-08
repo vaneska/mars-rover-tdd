@@ -9,6 +9,14 @@ services:
   environment:
    - SERVER_PORT=3000
 
+ rover-ui:
+  build:
+   context: ./rover-ui
+  ports:
+   - 8000:8000
+  volumes:
+   - ./rover-ui/src:/app/src
+
  server-node:
   build:
    context: ./backend-node
@@ -19,11 +27,3 @@ services:
   volumes:
    - ./backend-node/src:/app/src
   command: npm run dev
-
- frontend-vue:
-  build:
-   context: ./frontend-vue
-  ports:
-   - 8000:8000
-  volumes:
-   - ./frontend-vue/src:/app/src

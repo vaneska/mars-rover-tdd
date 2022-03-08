@@ -1,5 +1,5 @@
 {
-  "name": "backend-node",
+  "name": "rover",
   "private": true,
   "main": "./src/server.js",
   "scripts": {
