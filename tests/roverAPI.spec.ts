@@ -28,7 +28,18 @@ test.describe("Rover final spec", () => {
 
     expect(secondCommandResponse.status()).toBe(201);
     const { point } = await secondCommandResponse.json();
-    expect(point.x).toMatchObject({ x: 1, y: 1, direction: "E" });
+    expect(point).toMatchObject({ x: 1, y: 1, direction: "E" });
+  });
+
+  test("two moves and turn right", async ({ request }) => {
+    await roverAt(_0_0_N, grid_2x2, request);
+
+    await addCommand("MMR", request);
+    const secondCommandResponse = await addCommand("M", request);
+
+    expect(secondCommandResponse.status()).toBe(201);
+    const { point } = await secondCommandResponse.json();
+    expect(point).toMatchObject({ x: 1, y: 2, direction: "E" });
   });
 
   test("rover declines command if path crosses grid boundaries", async ({
