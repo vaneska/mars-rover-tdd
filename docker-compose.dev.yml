@@ -32,3 +32,11 @@ services:
 #   - 8081:8081
 #  volumes:
 #   - ./python-django:/app
+
+# server-mojo:
+#  build:
+#   context: ./perl-mojolicious
+#  ports:
+#   - 8081:8081
+#  volumes:
+#   - ./perl-mojolicious:/usr/src/app
