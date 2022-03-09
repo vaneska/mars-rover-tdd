@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 8081
 
-CMD [ "node", "./src/server.js" ]
+CMD [ "npm", "run", "dev" ]

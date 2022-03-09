@@ -13,7 +13,7 @@
 Для всех сервисов есть Dockerfile, можно запускать их по отдельности. Чтобы запустить всё разом, можно использовать docker compose:
 
 ```
-docker-compose -f ./docker-compose.dev.yml up
+docker-compose -f ./docker-compose.dev.yml up --build
 ```
 
 По-умолчанию запускается сервис обработки команд на Node JS, если вы выбираете другой язык – закомментируйте server-node и раскомментируйте нужный.
