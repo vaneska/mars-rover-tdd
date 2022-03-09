@@ -20,7 +20,7 @@ test.describe("Rover final spec", () => {
     expect(point).toMatchObject({ x: 2, y: 3, direction: "N" });
   });
 
-  test("multiple commands sum up final position", async ({ request }) => {
+  test.skip("multiple commands sum up final position", async ({ request }) => {
     await roverAt(_0_0_N, grid_2x2, request);
 
     await addCommand("MR", request);
@@ -31,7 +31,7 @@ test.describe("Rover final spec", () => {
     expect(point).toMatchObject({ x: 1, y: 1, direction: "E" });
   });
 
-  test("two moves and turn right", async ({ request }) => {
+  test.skip("two moves and turn right", async ({ request }) => {
     await roverAt(_0_0_N, grid_2x2, request);
 
     await addCommand("MMR", request);
@@ -42,7 +42,7 @@ test.describe("Rover final spec", () => {
     expect(point).toMatchObject({ x: 1, y: 2, direction: "E" });
   });
 
-  test("rover declines command if path crosses grid boundaries", async ({
+  test.skip("rover declines command if path crosses grid boundaries", async ({
     request,
   }) => {
     await roverAt(_0_0_N, grid_2x2, request);
@@ -55,7 +55,7 @@ test.describe("Rover final spec", () => {
     expect(error).toBe("unable to cross grid boundary");
   });
 
-  test("rover declines command if path goes through obstacle", async ({
+  test.skip("rover declines command if path goes through obstacle", async ({
     request,
   }) => {
     await roverAt(_0_0_N, grid_2x2_w_obstacle_at_1_1, request);
