@@ -1,5 +1,11 @@
 var restify = require("restify");
 var batteries = require("./batteries");
+var process = require("process");
+
+process.on("SIGINT", () => {
+  console.info("Interrupted");
+  process.exit(0);
+});
 
 var battery = batteries.createBattery();
 var server = restify.createServer();

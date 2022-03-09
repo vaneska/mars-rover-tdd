@@ -1,4 +1,5 @@
 const restify = require("restify");
+const process = require("process");
 
 const server = restify.createServer();
 
@@ -14,4 +15,9 @@ server.post("/commands", (req, res, next) => {
 
 server.listen(process.env.SERVER_PORT ?? 8081, function () {
   console.log("%s listening at %s", server.name, server.url);
+});
+
+process.on("SIGINT", () => {
+  console.info("Interrupted");
+  process.exit(0);
 });
