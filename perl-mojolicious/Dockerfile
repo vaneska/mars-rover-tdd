@@ -21,4 +21,4 @@ RUN rm -r /root/.cpanm
 
 COPY . .
 
-CMD ["/usr/src/app/rover/script/rover", "daemon", "-l", "http://*:8081"]
+CMD ["morbo", "/usr/src/app/rover/script/rover", "daemon", "-w", ".", "-l", "http://*:8081"]
