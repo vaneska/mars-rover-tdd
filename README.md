@@ -1,4 +1,4 @@
-# Mars-rover outside-in TDD
+# Outside-in TDD starter
 
 ## Привет!
 
