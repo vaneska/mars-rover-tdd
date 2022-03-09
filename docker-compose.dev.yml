@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
  rover:
@@ -17,21 +17,22 @@ services:
   volumes:
    - ./rover-ui/src:/app/src
 
- server-node:
-  build:
-   context: ./backend-node
-  ports:
-   - 8081:8081
-  volumes:
-   - ./backend-node/src:/app/src
+#  server-node:
+#   build:
+#    context: ./backend-node
+#   ports:
+#    - 8081:8081
+#   volumes:
+#    - ./backend-node/src:/app/src
 
-# server-django:
-#  build:
-#   context: ./python-django
-#  ports:
-#   - 8081:8081
-#  volumes:
-#   - ./python-django:/app
+ server-django:
+  hostname: rover-proxy
+  build:
+    context: ./python-django
+  ports:
+    - 8081:8081
+  volumes:
+    - ./python-django:/app
 
 # server-mojo:
 #  build:

@@ -15,7 +15,18 @@ test("server is available", async ({ request }) => {
 });
 
 test.describe("Rover final spec", () => {
-  test("first command returns next rover position", async ({ request }) => {
+  test("Command returns next rover position", async ({ request }) => {
+    await roverAt(_0_0_N, grid_10x10, request);
+
+    const addCommandResponse = await addCommand("M", request);
+
+    expect(addCommandResponse.status()).toBe(201);
+    const { point } = await addCommandResponse.json();
+    console.warn(point)
+    expect(point).toMatchObject({ x: 2, y: 3, direction: "N" });
+  });
+
+  test.skip("first command returns next rover position", async ({ request }) => {
     await roverAt(_0_0_N, grid_10x10, request);
 
     const addCommandResponse = await addCommand("MMRMMLM", request);

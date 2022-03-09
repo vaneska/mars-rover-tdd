@@ -21,4 +21,5 @@ from .rover import views
 urlpatterns = [
     path('brew_coffee', views.Commands.coffee),
     path('admin/', admin.site.urls),
+    path('commands', views.Commands.commands),
 ]
