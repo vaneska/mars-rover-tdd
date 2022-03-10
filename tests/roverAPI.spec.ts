@@ -23,7 +23,7 @@ test.describe("Rover final spec", () => {
     expect(addCommandResponse.status()).toBe(201);
     const { point } = await addCommandResponse.json();
     console.warn(point)
-    expect(point).toMatchObject({ x: 2, y: 3, direction: "N" });
+    expect(point).toMatchObject({ x: 0, y: 1, direction: "N" });
   });
 
   test.skip("first command returns next rover position", async ({ request }) => {

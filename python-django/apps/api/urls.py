@@ -19,7 +19,7 @@ from django.urls import path
 from .rover import views
 
 urlpatterns = [
-    path('brew_coffee', views.Commands.coffee),
+    path('brew_coffee', views.Coffee.as_view()),
     path('admin/', admin.site.urls),
     path('commands', views.Commands.as_view()),
 ]
