@@ -7,7 +7,7 @@ export type Position = {
 export type Grid = {
   x: number; // Horizontal size. E.g. 10 means range [0..9] of positions
   y: number; // Vertical size. E.g. 10 means range [0..9] of positions
-  obstacles?: Array<{ x: 1; y: 1 }>;
+  obstacles?: Array<{ x: number; y: number }>;
 };
 
 export type World = {
