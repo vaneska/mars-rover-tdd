@@ -1,14 +1,18 @@
-FROM python:3.9-alpine3.14
+FROM python:3.10-slim
+
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get update && apt-get install -y -q \
+      build-essential python3-dev libffi-dev git && \
+    python3 -m pip install --no-cache-dir --quiet -U pip && \
+    python3 -m pip install --no-cache-dir --quiet poetry
+
+ADD . /app
 
 WORKDIR /app
 
-COPY requirements.txt /app
-
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
-
-COPY . .
+RUN poetry export --without-hashes --dev -o requirements.txt
+RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 8081
 
-CMD [ "python3", "manage.py", "runserver", "0.0.0.0:8081" ]
+CMD FLASK_APP=apps.commands:app flask run --host 0.0.0.0 --port 8081

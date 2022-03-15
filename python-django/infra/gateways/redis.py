@@ -1,11 +1,13 @@
+from email.policy import default
+
+from pydantic import BaseSettings, Field, RedisDsn
+
 import redis
 
 
-class RedisConfig:
-    HOST: str = "mars-redis"
-    PORT: int = 6379
-    DB: int = 1
+class RedisConfig(BaseSettings):
+    REDIS_DSN: RedisDsn = Field(default="redis://mars-redis:6379/1", env="REDIS_DSN")
 
 
 def get_instance() -> redis.Redis:
-    return redis.Redis(host=RedisConfig.HOST, port=RedisConfig.PORT, db=RedisConfig.DB)
+    return redis.from_url(RedisConfig().REDIS_DSN)

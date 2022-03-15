@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Any, Dict, Iterable, Iterator, List
 
-from attrs import define, field
+from attrs import define
 
 
 class DirectionType(Enum):
@@ -66,23 +66,23 @@ class Rover:
             DirectionType.North: DirectionType.East,
             DirectionType.East: DirectionType.South,
             DirectionType.South: DirectionType.West,
-            DirectionType.East: DirectionType.North,
+            DirectionType.West: DirectionType.North,
         }
         self.position.direction = next_direction[self.position.direction]
 
         return self.position
 
 
-def _command_list_converter(commands_str: str) -> List[Command]:
-    if commands_str is None or not len(commands_str):
-        raise ValueError("Empty command string!")
-
-    return [Command(symbol) for symbol in commands_str]
-
-
 @define
 class CommandList(Iterable):
-    commands: List[Command] = field(converter=_command_list_converter)
+    commands: List[Command]
+
+    @classmethod
+    def validate(cls, commands_str: str) -> "CommandList":
+        if commands_str is None or not len(commands_str):
+            raise ValueError("Empty command string!")
+
+        return cls(commands=[Command(symbol) for symbol in commands_str])
 
     def __iter__(self) -> Iterator[List[Command]]:
         return iter(self.commands)
