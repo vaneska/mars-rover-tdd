@@ -30,12 +30,12 @@
       "**/srs-docker": true
     },
 
-    "editor.rulers": [88],
+    "editor.rulers": [79],
 
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
     "python.formatting.provider": "black",
-    "python.formatting.blackArgs": ["--line-length", "88"],
+    "python.formatting.blackArgs": ["--line-length", "79"],
     "python.testing.pytestEnabled": true,
 
 

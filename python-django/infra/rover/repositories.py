@@ -1,16 +1,21 @@
 import json
 
+from attrs import define
 from domains.rover.entities import DirectionType, Position
 from domains.rover.repositories import RoverPositionRepo
 from infra.gateways import redis
 from redis import Redis
 
 
+@define
 class RoverPositionFakeRepo(RoverPositionRepo):
+    position: Position
+
     def get_current_position(self) -> Position:
-        return Position(x=0, y=0, direction=DirectionType.North)
+        return self.position
 
     def set_position(self, position: Position) -> bool:
+        self.position = position
         return True
 
 
