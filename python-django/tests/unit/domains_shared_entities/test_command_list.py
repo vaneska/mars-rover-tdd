@@ -1,11 +1,14 @@
 import pytest
-from domains.rover.entities import Command, CommandList
+from domains.shared.entities import Command, CommandList
 
 
 @pytest.mark.parametrize(
     "string,expected_list",
     [
-        ("MLR", CommandList(commands=[Command("M"), Command("L"), Command("R")])),
+        (
+            "MLR",
+            CommandList(commands=[Command("M"), Command("L"), Command("R")]),
+        ),
         ("M", CommandList(commands=[Command("M")])),
         ("L", CommandList(commands=[Command("L")])),
         ("R", CommandList(commands=[Command("R")])),

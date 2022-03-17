@@ -1,5 +1,11 @@
-from domains.rover.entities import Command, CommandList, DirectionType, Position, Rover
+from domains.rover.entities import Rover
 from domains.rover.use_cases import MoveForecastUseCase
+from domains.shared.entities import (
+    Command,
+    CommandList,
+    DirectionType,
+    Position,
+)
 
 
 def test_success():

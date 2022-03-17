@@ -1,5 +1,6 @@
 import pytest
-from domains.rover.entities import Command, DirectionType, Position, Rover
+from domains.rover.entities import Rover
+from domains.shared.entities import Command, DirectionType, Position
 from infra.rover.managers import MarsRoverManager
 
 

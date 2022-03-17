@@ -1,15 +1,13 @@
-from turtle import pos
-
-from domains.rover.entities import (
+from domains.rover.entities import Rover
+from domains.rover.use_cases import ProcessCommandsUseCase
+from domains.shared.entities import (
     Command,
     CommandList,
     DirectionType,
     Position,
-    Rover,
 )
-from domains.rover.use_cases import ProcessCommandsUseCase
 from infra.rover.managers import MarsRoverManager
-from infra.rover.repositories import RoverPositionFakeRepo
+from infra.shared.repositories import RoverPositionFakeRepo
 
 
 def test_success():

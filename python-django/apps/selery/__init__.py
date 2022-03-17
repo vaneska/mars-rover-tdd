@@ -4,7 +4,7 @@ from celery import Celery
 from domains.rover.entities import CommandList, Rover
 from domains.rover.use_cases import ProcessCommandsUseCase
 from infra.rover.managers import MarsRoverHTTPManager
-from infra.rover.repositories import RoverPositionRedisRepo
+from infra.shared.repositories import RoverPositionRedisRepo
 
 app = Celery()
 

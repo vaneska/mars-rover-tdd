@@ -3,13 +3,14 @@ from enum import Enum
 
 import requests
 from attrs import define
-from domains.rover.entities import Command, Position, Rover
+from domains.rover.entities import Rover
 from domains.rover.managers import (
     RoverIsBusyException,
     RoverLowPowerException,
     RoverManager,
     RoverUnknownException,
 )
+from domains.shared.entities import Command, Position
 from pydantic import BaseSettings, Field, HttpUrl
 
 
@@ -60,9 +61,12 @@ class MarsRoverHTTPManager(MarsRoverManager):
         elif command == Command.RIGHT:
             url_part = settings.url_part_right
 
-        response: requests.Response = requests.get(
-            settings.base_url + url_part
-        )
+        try:
+            response: requests.Response = requests.get(
+                settings.base_url + url_part
+            )
+        except Exception as err:
+            self._raise_exception(str(err))
 
         if response.status_code != http.HTTPStatus.OK:
             self._raise_exception(response.json().get("error", ""))

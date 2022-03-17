@@ -1,4 +1,4 @@
-from domains.rover.entities import DirectionType, Position
+from domains.shared.entities import DirectionType, Position
 
 
 def test_dict():

@@ -2,12 +2,13 @@ import http
 
 import pytest
 import responses
-from domains.rover.entities import Command, DirectionType, Position, Rover
+from domains.rover.entities import Rover
 from domains.rover.managers import (
     RoverIsBusyException,
     RoverLowPowerException,
     RoverUnknownException,
 )
+from domains.shared.entities import Command, DirectionType, Position
 from infra.rover.managers import (
     MarsRoverErrorMessage,
     MarsRoverHTTPManager,

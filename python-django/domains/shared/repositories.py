@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from domains.rover.entities import Position
+from domains.shared.entities import Position
 
 
 class RoverPositionRepo(ABC):

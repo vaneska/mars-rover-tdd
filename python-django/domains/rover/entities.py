@@ -1,34 +1,4 @@
-from enum import Enum
-from typing import Any, Dict, Iterable, Iterator, List
-
-from attrs import define
-
-
-class DirectionType(Enum):
-    North = "N"
-    East = "E"
-    South = "S"
-    West = "W"
-
-
-class Command(Enum):
-    MOVE = "M"
-    LEFT = "L"
-    RIGHT = "R"
-
-
-@define
-class Position:
-    x: int
-    y: int
-    direction: DirectionType
-
-    def dict(self) -> Dict[str, Any]:
-        return {
-            "x": self.x,
-            "y": self.y,
-            "direction": self.direction.value,
-        }
+from domains.shared.entities import DirectionType, Position
 
 
 class Rover:
@@ -71,15 +41,3 @@ class Rover:
         self.position.direction = next_direction[self.position.direction]
 
         return self.position
-
-
-@define
-class CommandList:
-    commands: List[Command]
-
-    @classmethod
-    def validate(cls, commands_str: str) -> "CommandList":
-        if commands_str is None or not len(commands_str):
-            raise ValueError("Empty command string!")
-
-        return cls(commands=[Command(symbol) for symbol in commands_str])

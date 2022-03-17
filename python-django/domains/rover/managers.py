@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from domains.rover.entities import Command, Position
+from domains.shared.entities import Command, Position
 
 
 class RoverGatewayException(Exception):

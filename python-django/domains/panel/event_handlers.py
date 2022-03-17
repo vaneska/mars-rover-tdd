@@ -1,5 +1,5 @@
 import zope.event.classhandler
-from domains.rover.events import RoverPositionChanged
+from domains.shared.events import RoverPositionChanged
 
 
 @zope.event.classhandler.handler(RoverPositionChanged)

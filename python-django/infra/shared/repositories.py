@@ -1,8 +1,8 @@
 import json
 
 from attrs import define
-from domains.rover.entities import DirectionType, Position
-from domains.rover.repositories import RoverPositionRepo
+from domains.shared.repositories import RoverPositionRepo
+from domains.shared.entities import DirectionType, Position
 from infra.gateways import redis
 from redis import Redis
 
