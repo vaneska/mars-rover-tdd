@@ -2,7 +2,7 @@ import json
 
 from domains.shared.entities import DirectionType, Position
 from infra.gateways import redis
-from infra.shared.repositories import RoverPositionRedisRepo
+from infra.rover.repositories import RoverPositionRedisRepo
 
 
 def test_get_empty_position():

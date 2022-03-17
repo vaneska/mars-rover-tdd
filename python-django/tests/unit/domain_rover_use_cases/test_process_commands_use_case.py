@@ -7,7 +7,7 @@ from domains.shared.entities import (
     Position,
 )
 from infra.rover.managers import MarsRoverManager
-from infra.shared.repositories import RoverPositionFakeRepo
+from infra.rover.repositories import RoverPositionFakeRepo
 
 
 def test_success():

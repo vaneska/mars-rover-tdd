@@ -6,7 +6,7 @@ from domains.shared.events import (
     RoverPositionChanged,
 )
 from domains.rover.managers import RoverGatewayException, RoverManager
-from domains.shared.repositories import RoverPositionRepo
+from domains.rover.repositories import RoverPositionRepo
 from domains.shared.entities import Command, CommandList, Position
 
 

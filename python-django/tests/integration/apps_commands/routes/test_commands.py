@@ -1,5 +1,5 @@
 from infra.gateways import redis
-from infra.shared.repositories import RoverPositionRedisRepo
+from infra.rover.repositories import RoverPositionRedisRepo
 from werkzeug.test import TestResponse
 
 
