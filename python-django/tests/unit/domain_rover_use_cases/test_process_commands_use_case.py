@@ -8,7 +8,7 @@ from domains.rover.entities import (
     Rover,
 )
 from domains.rover.use_cases import ProcessCommandsUseCase
-from infra.rover.gateways import MarsRoverGateway
+from infra.rover.managers import MarsRoverManager
 from infra.rover.repositories import RoverPositionFakeRepo
 
 
@@ -16,7 +16,7 @@ def test_success():
     position = Position(x=0, y=0, direction=DirectionType.North)
     position_repo = RoverPositionFakeRepo(position=position)
     use_case = ProcessCommandsUseCase(
-        rover_gateway=MarsRoverGateway(rover=Rover(position=position)),
+        rover_manager=MarsRoverManager(rover=Rover(position=position)),
         position_repo=position_repo,
     )
     use_case.execute(

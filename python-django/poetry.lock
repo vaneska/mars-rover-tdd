@@ -556,6 +556,21 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
 
 [[package]]
+name = "responses"
+version = "0.19.0"
+description = "A utility library for mocking out the `requests` Python library."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+requests = ">=2.0,<3.0"
+urllib3 = ">=1.25.10"
+
+[package.extras]
+tests = ["pytest (>=7.0.0)", "coverage (>=6.0.0)", "pytest-cov", "pytest-asyncio", "pytest-localserver", "flake8", "types-mock", "types-requests", "mypy"]
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -643,10 +658,22 @@ category = "main"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 
+[[package]]
+name = "zope.event"
+version = "4.5.0"
+description = "Very basic event publishing system"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+docs = ["sphinx"]
+test = ["zope.testrunner"]
+
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "d6b0974d7ecc3d8804f204fcc1f9f509029e509eb2f6306c6a4d001290d24e48"
+content-hash = "5ce5b282f0fedb2cec48efd7fc6a099daa3948e1471890c65845a559601ffbe9"
 
 [metadata.files]
 amqp = [
@@ -913,6 +940,10 @@ requests = [
     {file = "requests-2.27.1-py2.py3-none-any.whl", hash = "sha256:f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d"},
     {file = "requests-2.27.1.tar.gz", hash = "sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61"},
 ]
+responses = [
+    {file = "responses-0.19.0-py3-none-any.whl", hash = "sha256:53354b5de163aa2074312c71d8ebccb8bd1ab336cff7053abb75e84dc5637abe"},
+    {file = "responses-0.19.0.tar.gz", hash = "sha256:3fc29c3117e14136b833a0a6d4e7f1217c6301bf08b6086db468e12f1e3290e2"},
+]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
@@ -1014,4 +1045,8 @@ wrapt = [
     {file = "wrapt-1.14.0-cp39-cp39-win32.whl", hash = "sha256:2eca15d6b947cfff51ed76b2d60fd172c6ecd418ddab1c5126032d27f74bc350"},
     {file = "wrapt-1.14.0-cp39-cp39-win_amd64.whl", hash = "sha256:bb36fbb48b22985d13a6b496ea5fb9bb2a076fea943831643836c9f6febbcfdc"},
     {file = "wrapt-1.14.0.tar.gz", hash = "sha256:8323a43bd9c91f62bb7d4be74cc9ff10090e7ef820e27bfe8815c57e68261311"},
+]
+"zope.event" = [
+    {file = "zope.event-4.5.0-py2.py3-none-any.whl", hash = "sha256:2666401939cdaa5f4e0c08cf7f20c9b21423b95e88f4675b1443973bdb080c42"},
+    {file = "zope.event-4.5.0.tar.gz", hash = "sha256:5e76517f5b9b119acf37ca8819781db6c16ea433f7e2062c4afc2b6fbedb1330"},
 ]

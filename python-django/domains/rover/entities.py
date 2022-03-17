@@ -74,7 +74,7 @@ class Rover:
 
 
 @define
-class CommandList(Iterable):
+class CommandList:
     commands: List[Command]
 
     @classmethod
@@ -83,6 +83,3 @@ class CommandList(Iterable):
             raise ValueError("Empty command string!")
 
         return cls(commands=[Command(symbol) for symbol in commands_str])
-
-    def __iter__(self) -> Iterator[List[Command]]:
-        return iter(self.commands)

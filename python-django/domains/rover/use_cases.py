@@ -1,6 +1,8 @@
+import zope.event
 from attrs import define
 from domains.rover.entities import Command, CommandList, Position, Rover
-from domains.rover.gateways import RoverGateway
+from domains.rover.events import RoverPositionChanged
+from domains.rover.managers import RoverManager
 from domains.rover.repositories import RoverPositionRepo
 
 
@@ -10,7 +12,7 @@ class MoveForecastUseCase:
 
     def execute(self, command_list: CommandList) -> Position:
 
-        for command in command_list:
+        for command in command_list.commands:
             if command == Command.MOVE:
                 self.rover.move()
             elif command == Command.LEFT:
@@ -23,11 +25,13 @@ class MoveForecastUseCase:
 
 @define
 class ProcessCommandsUseCase:
-    rover_gateway: RoverGateway
+    rover_manager: RoverManager
     position_repo: RoverPositionRepo
 
     def execute(self, command_list: CommandList) -> None:
 
-        for command in command_list:
-            position = self.rover_gateway.process_command(command=command)
-            self.position_repo.set_position(position=position)
+        for command in command_list.commands:
+            position = self.rover_manager.process_command(command=command)
+
+            if self.position_repo.set_position(position):
+                zope.event.notify(RoverPositionChanged(position))
