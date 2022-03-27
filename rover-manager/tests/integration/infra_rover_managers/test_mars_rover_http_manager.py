@@ -3,15 +3,15 @@ import http
 import pytest
 import responses
 from domains.rover.entities import Rover
-from domains.rover.managers import (
+from domains.rover.transmiters import (
     RoverIsBusyException,
     RoverLowPowerException,
     RoverUnknownException,
 )
 from domains.shared.entities import Command, DirectionType, Position
-from infra.rover.managers import (
+from infra.rover.transmitters import (
     MarsRoverErrorMessage,
-    MarsRoverHTTPManager,
+    MarsRoverHTTPTransmitter,
     MarsRoverHTTPSettings,
 )
 
@@ -26,7 +26,7 @@ def test_successful_processed_command():
         status=http.HTTPStatus.OK,
     )
 
-    manager = MarsRoverHTTPManager(
+    manager = MarsRoverHTTPTransmitter(
         rover=Rover(Position(x=0, y=0, direction=DirectionType.North))
     )
 
@@ -45,7 +45,7 @@ def test_low_power_error():
         status=http.HTTPStatus.SERVICE_UNAVAILABLE,
     )
 
-    manager = MarsRoverHTTPManager(
+    manager = MarsRoverHTTPTransmitter(
         rover=Rover(Position(x=0, y=0, direction=DirectionType.North))
     )
 
@@ -63,7 +63,7 @@ def test_is_busy_error():
         status=http.HTTPStatus.SERVICE_UNAVAILABLE,
     )
 
-    manager = MarsRoverHTTPManager(
+    manager = MarsRoverHTTPTransmitter(
         rover=Rover(Position(x=0, y=0, direction=DirectionType.North))
     )
 
@@ -82,7 +82,7 @@ def test_unknown_error():
         status=http.HTTPStatus.SERVICE_UNAVAILABLE,
     )
 
-    manager = MarsRoverHTTPManager(
+    manager = MarsRoverHTTPTransmitter(
         rover=Rover(Position(x=0, y=0, direction=DirectionType.North))
     )
 

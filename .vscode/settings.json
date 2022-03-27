@@ -39,31 +39,31 @@
     "python.testing.pytestEnabled": true,
 
 
-    "python.envFile": "${workspaceFolder}/python-django/.env",
-    "python.pythonPath": "${workspaceFolder}/python-django/.venv/bin/python3.10",
+    "python.envFile": "${workspaceFolder}/rover-manager/.env",
+    "python.pythonPath": "${workspaceFolder}/rover-manager/.venv/bin/python3.10",
 
     "python.analysis.extraPaths": [
-      "${workspaceFolder}/python-django",
-      "${workspaceFolder}/python-django/.venv/lib/python3.10",
-      "${workspaceFolder}/python-django/.venv/lib/python3.10/site-packages"
+      "${workspaceFolder}/rover-manager",
+      "${workspaceFolder}/rover-manager/.venv/lib/python3.10",
+      "${workspaceFolder}/rover-manager/.venv/lib/python3.10/site-packages"
     ],
 
     "python.autoComplete.extraPaths": [
-      "${workspaceFolder}/python-django",
-      "${workspaceFolder}/python-django/.venv/lib/python3.10",
-      "${workspaceFolder}/python-django/.venv/lib/python3.10/site-packages"
+      "${workspaceFolder}/rover-manager",
+      "${workspaceFolder}/rover-manager/.venv/lib/python3.10",
+      "${workspaceFolder}/rover-manager/.venv/lib/python3.10/site-packages"
     ],
 
     "python.sortImports.args": [
-      "--settings-path", "${workspaceFolder}/python-django",
+      "--settings-path", "${workspaceFolder}/rover-manager",
     ],
 
     "[python]": {
         "editor.formatOnSave": true
     },
-    "python.linting.flake8Path": "${workspaceFolder}/python-django/.venv/bin/flake8",
-    "python.defaultInterpreterPath": "${workspaceFolder}/python-django/.venv/bin/python3.10",
+    "python.linting.flake8Path": "${workspaceFolder}/rover-manager/.venv/bin/flake8",
+    "python.defaultInterpreterPath": "${workspaceFolder}/rover-manager/.venv/bin/python3.10",
     "python.testing.unittestEnabled": false,
-    "python.formatting.blackPath": "${workspaceFolder}/python-django/.venv/bin/black",
-    "python.testing.pytestPath": "${workspaceFolder}/python-django/.venv/bin/pytest",
+    "python.formatting.blackPath": "${workspaceFolder}/rover-manager/.venv/bin/black",
+    "python.testing.pytestPath": "${workspaceFolder}/rover-manager/.venv/bin/pytest",
   }

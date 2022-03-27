@@ -6,7 +6,7 @@ from domains.shared.entities import (
     DirectionType,
     Position,
 )
-from infra.rover.managers import MarsRoverManager
+from infra.rover.transmitters import MarsRoverTransmitter
 from infra.rover.repositories import RoverPositionFakeRepo
 
 
@@ -14,7 +14,7 @@ def test_success():
     position = Position(x=0, y=0, direction=DirectionType.North)
     position_repo = RoverPositionFakeRepo(position=position)
     use_case = ProcessCommandsUseCase(
-        rover_manager=MarsRoverManager(rover=Rover(position=position)),
+        rover_transmitter=MarsRoverTransmitter(rover=Rover(position=position)),
         position_repo=position_repo,
     )
     use_case.execute(

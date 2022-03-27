@@ -1,3 +1,4 @@
+from apps.tasks_processor import process_commands
 from domains.rover.entities import Rover
 from domains.rover.use_cases import MoveForecastUseCase
 from domains.shared.entities import CommandList
@@ -21,11 +22,12 @@ def create_app() -> Flask:
             rover=Rover(rover_repo.get_current_position())
         )
 
-        position = move_forcast.execute(
-            command_list=CommandList.validate(
-                commands_str=request.json.get("command")
-            )
+        command_list = CommandList.validate(
+            commands_str=request.json.get("command")
         )
+
+        position = move_forcast.execute(command_list=command_list)
+        process_commands.delays(commands=str(command_list))
 
         return make_response({"point": position.dict()}, 201)
 

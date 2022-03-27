@@ -23,3 +23,9 @@ def test_success(string, expected_list):
 def test_empty_list():
     with pytest.raises(ValueError):
         CommandList.validate(commands_str="")
+
+
+def test_list_to_str():
+    result = str(CommandList.validate(commands_str="MLR"))
+
+    assert result == "MLR"

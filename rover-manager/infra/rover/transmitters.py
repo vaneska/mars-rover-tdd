@@ -4,14 +4,14 @@ from enum import Enum
 import requests
 from attrs import define
 from domains.rover.entities import Rover
-from domains.rover.managers import (
+from domains.rover.transmiters import (
     RoverIsBusyException,
     RoverLowPowerException,
-    RoverManager,
+    RoverTransmitter,
     RoverUnknownException,
 )
 from domains.shared.entities import Command, Position
-from pydantic import BaseSettings, Field, HttpUrl
+from pydantic import BaseSettings, Field
 
 
 class MarsRoverErrorMessage(Enum):
@@ -20,7 +20,7 @@ class MarsRoverErrorMessage(Enum):
 
 
 @define
-class MarsRoverManager(RoverManager):
+class MarsRoverTransmitter(RoverTransmitter):
     rover: Rover
 
     def _move_rover(self, command: Command) -> None:
@@ -41,7 +41,7 @@ class MarsRoverManager(RoverManager):
 
 
 class MarsRoverHTTPSettings(BaseSettings):
-    base_url: HttpUrl = Field(
+    base_url: str = Field(
         default="http://rover:3000/", env="MARS_ROVER_BASE_URL"
     )
     url_part_move: str = Field(default="move")
@@ -49,7 +49,7 @@ class MarsRoverHTTPSettings(BaseSettings):
     url_part_right: str = Field(default="right")
 
 
-class MarsRoverHTTPManager(MarsRoverManager):
+class MarsRoverHTTPTransmitter(MarsRoverTransmitter):
     def _send_command(self, command: Command) -> bool:
 
         settings = MarsRoverHTTPSettings()

@@ -21,6 +21,9 @@ class CommandList:
 
         return cls(commands=[Command(symbol) for symbol in commands_str])
 
+    def __str__(self) -> str:
+        return "".join([c.value for c in self.commands])
+
 
 class DirectionType(Enum):
     North = "N"

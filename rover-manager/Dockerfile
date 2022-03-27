@@ -2,7 +2,7 @@ FROM python:3.10-slim
 
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && apt-get install -y -q \
-      build-essential python3-dev libffi-dev git && \
+      build-essential python3-dev libffi-dev git tk && \
     python3 -m pip install --no-cache-dir --quiet -U pip && \
     python3 -m pip install --no-cache-dir --quiet poetry
 

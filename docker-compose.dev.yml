@@ -25,14 +25,26 @@ services:
 #   volumes:
 #    - ./backend-node/src:/app/src
 
- server-django:
-  hostname: rover-proxy
+ rover-manager-api:
+  hostname: rover-manager-api
+  command: flask run --host 0.0.0.0 --port 8081
+  environment:
+    - FLASK_APP=apps.commands:app
   build:
-    context: ./python-django
+    context: ./rover-manager
   ports:
     - 8081:8081
   volumes:
-    - ./python-django:/app
+    - ./rover-manager:/app
+
+
+ rover-manager-tasks:
+  hostname: rover-manager-tasks
+  command: celery -A apps.tasks_processor.app worker --loglevel=DEBUG
+  build:
+    context: ./rover-manager
+  volumes:
+    - ./rover-manager:/app
 
 # server-mojo:
 #  build:

@@ -19,7 +19,7 @@ class RoverUnknownException(RoverGatewayException):
     pass
 
 
-class RoverManager(ABC):
+class RoverTransmitter(ABC):
     @abstractmethod
     def process_command(self, command: Command) -> Position:
         pass

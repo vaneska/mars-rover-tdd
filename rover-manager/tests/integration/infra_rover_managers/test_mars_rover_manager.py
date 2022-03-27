@@ -1,7 +1,7 @@
 import pytest
 from domains.rover.entities import Rover
 from domains.shared.entities import Command, DirectionType, Position
-from infra.rover.managers import MarsRoverManager
+from infra.rover.transmitters import MarsRoverTransmitter
 
 
 @pytest.mark.parametrize(
@@ -14,7 +14,7 @@ from infra.rover.managers import MarsRoverManager
 )
 def test_successful_processed_command(command, expected_position):
 
-    manager = MarsRoverManager(
+    manager = MarsRoverTransmitter(
         rover=Rover(Position(x=0, y=0, direction=DirectionType.North))
     )
 

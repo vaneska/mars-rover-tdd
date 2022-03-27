@@ -1,13 +1,13 @@
 import zope.event
 from attrs import define
 from domains.rover.entities import Rover
+from domains.rover.transmiters import RoverGatewayException, RoverTransmitter
+from domains.rover.repositories import RoverPositionRepo
+from domains.shared.entities import Command, CommandList, Position
 from domains.shared.events import (
     ChangingRoverPositionFailed,
     RoverPositionChanged,
 )
-from domains.rover.managers import RoverGatewayException, RoverManager
-from domains.rover.repositories import RoverPositionRepo
-from domains.shared.entities import Command, CommandList, Position
 
 
 @define
@@ -29,7 +29,7 @@ class MoveForecastUseCase:
 
 @define
 class ProcessCommandsUseCase:
-    rover_manager: RoverManager
+    rover_transmitter: RoverTransmitter
     position_repo: RoverPositionRepo
 
     def execute(self, command_list: CommandList) -> None:
@@ -37,7 +37,9 @@ class ProcessCommandsUseCase:
         idx = 0
         for command in command_list.commands:
             try:
-                position = self.rover_manager.process_command(command=command)
+                position = self.rover_transmitter.process_command(
+                    command=command
+                )
             except RoverGatewayException as err:
                 zope.event.notify(
                     ChangingRoverPositionFailed(
