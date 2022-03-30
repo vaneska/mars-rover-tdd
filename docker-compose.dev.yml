@@ -40,7 +40,7 @@ services:
 
  rover-manager-tasks:
   hostname: rover-manager-tasks
-  command: celery -A apps.tasks_processor.app worker --loglevel=DEBUG
+  command: python -m apps.commands_processor
   build:
     context: ./rover-manager
   volumes:

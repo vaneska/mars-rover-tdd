@@ -1,12 +1,20 @@
+from logging import Logger
+from typing import Optional
+
 import zope.event
 from attrs import define
 from domains.rover.entities import Rover
+from domains.rover.repositories import (
+    CommandListRepo,
+    NoCommandsException,
+    RoverPositionRepo,
+)
 from domains.rover.transmiters import RoverGatewayException, RoverTransmitter
-from domains.rover.repositories import RoverPositionRepo
 from domains.shared.entities import Command, CommandList, Position
 from domains.shared.events import (
     ChangingRoverPositionFailed,
     RoverPositionChanged,
+    SavingRoverPositionFailed,
 )
 
 
@@ -31,8 +39,16 @@ class MoveForecastUseCase:
 class ProcessCommandsUseCase:
     rover_transmitter: RoverTransmitter
     position_repo: RoverPositionRepo
+    commands_list_repo: CommandListRepo
+    logger: Logger
 
-    def execute(self, command_list: CommandList) -> None:
+    def execute(self) -> None:
+
+        try:
+            command_list = self.commands_list_repo.pop_commands()
+        except NoCommandsException:
+            self.logger.debug("NoCommandsException")
+            return
 
         idx = 0
         for command in command_list.commands:
@@ -41,25 +57,27 @@ class ProcessCommandsUseCase:
                     command=command
                 )
             except RoverGatewayException as err:
-                zope.event.notify(
-                    ChangingRoverPositionFailed(
-                        command_list=command_list,
-                        current_index=idx,
-                        error_message=str(err),
-                    )
+                event = ChangingRoverPositionFailed(
+                    command_list=command_list,
+                    current_index=idx,
+                    error=str(err),
                 )
+                zope.event.notify(event)
+                self.logger.info(str(event))
                 return
 
             try:
-                self.position_repo.set_position(position)
-                zope.event.notify(RoverPositionChanged(position))
+                self.position_repo.save_position(position)
+                event = RoverPositionChanged(position)
+                self.logger.info(str(event))
+                zope.event.notify(event)
             except Exception as err:
-                zope.event.notify(
-                    ChangingRoverPositionFailed(
-                        command_list=command_list,
-                        current_index=idx,
-                        error_message=str(err),
-                    )
+                event = SavingRoverPositionFailed(
+                    command_list=command_list,
+                    current_index=idx,
+                    error=str(err),
                 )
+                zope.event.notify(event)
+                self.logger.info(str(event))
                 return
             idx += 1

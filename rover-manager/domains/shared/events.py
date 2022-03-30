@@ -15,4 +15,11 @@ class RoverPositionChanged(RoverEvent):
 class ChangingRoverPositionFailed(RoverEvent):
     command_list: CommandList
     current_index: int
-    error_message: str
+    error: str
+
+
+@define
+class SavingRoverPositionFailed(RoverEvent):
+    command_list: CommandList
+    current_index: int
+    error: str

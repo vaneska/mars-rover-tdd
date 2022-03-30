@@ -23,7 +23,7 @@ def process_commands(commands: str):
     position_repo = RoverPositionRedisRepo()
     use_case = ProcessCommandsUseCase(
         rover_transmitter=MarsRoverHTTPTransmitter(
-            rover=Rover(position=position_repo.get_current_position())
+            rover=Rover(position=position_repo.load_position())
         ),
         position_repo=position_repo,
     )

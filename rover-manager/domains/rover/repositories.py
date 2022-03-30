@@ -1,13 +1,25 @@
 from abc import ABC, abstractmethod
 
-from domains.shared.entities import Position
+from domains.shared.entities import CommandList, Position
 
+class NoCommandsException(Exception):
+    pass
 
 class RoverPositionRepo(ABC):
     @abstractmethod
-    def get_current_position(self) -> Position:
+    def load_position(self) -> Position:
         pass
 
     @abstractmethod
-    def set_position(self, position: Position) -> bool:
+    def save_position(self, position: Position) -> bool:
+        pass
+
+
+class CommandListRepo(ABC):
+    @abstractmethod
+    def pop_commands(self) -> CommandList:
+        pass
+
+    @abstractmethod
+    def push_commands(self, command_list: CommandList) -> bool:
         pass

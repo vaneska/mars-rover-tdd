@@ -8,7 +8,7 @@ from infra.rover.repositories import RoverPositionRedisRepo
 def test_get_empty_position():
     r = redis.get_instance()
     r.delete(RoverPositionRedisRepo.KEY_NAME)
-    result = RoverPositionRedisRepo().get_current_position()
+    result = RoverPositionRedisRepo().load_position()
 
     assert result == Position(x=0, y=0, direction=DirectionType.North)
 
@@ -20,6 +20,6 @@ def test_get_exist_position():
         RoverPositionRedisRepo.KEY_NAME, json.dumps(expected_position.dict())
     )
 
-    result = RoverPositionRedisRepo().get_current_position()
+    result = RoverPositionRedisRepo().load_position()
 
     assert result == expected_position

@@ -1,9 +1,11 @@
-from apps.tasks_processor import process_commands
 from domains.rover.entities import Rover
 from domains.rover.use_cases import MoveForecastUseCase
 from domains.shared.entities import CommandList
 from flask import Flask, make_response, request
-from infra.rover.repositories import RoverPositionRedisRepo
+from infra.rover.repositories import (
+    CommandListRedisRepo,
+    RoverPositionRedisRepo,
+)
 
 
 def create_app() -> Flask:
@@ -18,8 +20,9 @@ def create_app() -> Flask:
     def post_commands():
 
         rover_repo = RoverPositionRedisRepo()
+        commands_list_repo = CommandListRedisRepo()
         move_forcast = MoveForecastUseCase(
-            rover=Rover(rover_repo.get_current_position())
+            rover=Rover(rover_repo.load_position())
         )
 
         command_list = CommandList.validate(
@@ -27,7 +30,7 @@ def create_app() -> Flask:
         )
 
         position = move_forcast.execute(command_list=command_list)
-        process_commands.delays(commands=str(command_list))
+        commands_list_repo.push_commands(command_list=command_list)
 
         return make_response({"point": position.dict()}, 201)
 
