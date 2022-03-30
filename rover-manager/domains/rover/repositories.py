@@ -1,9 +1,12 @@
 from abc import ABC, abstractmethod
+from typing import List
 
 from domains.shared.entities import CommandList, Position
 
+
 class NoCommandsException(Exception):
     pass
+
 
 class RoverPositionRepo(ABC):
     @abstractmethod
@@ -22,4 +25,8 @@ class CommandListRepo(ABC):
 
     @abstractmethod
     def push_commands(self, command_list: CommandList) -> bool:
+        pass
+
+    @abstractmethod
+    def fetch_list(self) -> List[CommandList]:
         pass

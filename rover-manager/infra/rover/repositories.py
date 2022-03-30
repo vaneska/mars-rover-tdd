@@ -63,6 +63,9 @@ class CommandListFakeRepo(CommandListRepo):
         self._commands.append(str(command_list))
         return True
 
+    def fetch_list(self) -> List[CommandList]:
+        return [CommandList.validate(c) for c in self._commands]
+
 
 class CommandListRedisRepo(CommandListRepo):
     KEY_NAME = "rover:commands"
@@ -79,3 +82,9 @@ class CommandListRedisRepo(CommandListRepo):
     def push_commands(self, command_list: CommandList) -> bool:
         self._redis.rpush(self.KEY_NAME, str(command_list))
         return True
+
+    def fetch_list(self) -> List[CommandList]:
+        return [
+            CommandList.validate(c.decode("utf-8"))
+            for c in self._redis.lrange(self.KEY_NAME, 0, -1)
+        ]

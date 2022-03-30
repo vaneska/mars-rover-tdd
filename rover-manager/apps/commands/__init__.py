@@ -34,6 +34,20 @@ def create_app() -> Flask:
 
         return make_response({"point": position.dict()}, 201)
 
+    @app.route("/commands", methods=["GET"])
+    def get_commands():
+
+        commands_list_repo = CommandListRedisRepo()
+
+        return make_response(
+            {
+                "commands": [
+                    str(c) for c in commands_list_repo.fetch_list()
+                ]
+            },
+            201,
+        )
+
     return app
 
 
